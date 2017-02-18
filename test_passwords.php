@@ -14,9 +14,9 @@ verifyReg($username = "password", $password = "magik", $password2 = "magik", $ma
 
 
 // Delete previously created entries with username "password".
-$testuname = "password";
+$testpass = "password";
 $stmt = $conn->prepare("DELETE FROM user_info WHERE username = ?");
-$stmt->bind_param("s", $testuname);
+$stmt->bind_param("s", $testpass);
 $stmt->execute();
 
 
