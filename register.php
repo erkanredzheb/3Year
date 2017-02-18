@@ -7,78 +7,72 @@ if(isset($_POST['submit']))
 	$mails = $_POST['email'];
 
 
-    verifyDetails($username, $password, $password2, $mails);
-
-}
-
-function verifyDetails($username, $password, $password2, $mails)
-{
     // check if username has forbidden sumbols.
     if(!isSafe($username))
-        echo "You have used forbidden symbols.";
+    	echo "You have used forbidden symbols.";
     // check if username has min 4 chars.
     else if (strlen($username) < 4) 
     {
-        echo "The username is too short.";
+    	echo "The username is too short.";
     }
     // check if pass match.
     else if ($password != $password2) 
     {
-        echo "Your passwords do not match.";
+    	echo "Your passwords do not match.";
     }
     // check if e-mail valid.
     else if (!filter_var($mails, FILTER_VALIDATE_EMAIL))
     {
-        echo "Your e-mail address is invalid.";
+    	echo "Your e-mail address is invalid.";
     }
     else
-    {   
-        echo $username;
-        require("connectDB.php");
-       
+    {	
+    	echo $username;
+		require("connectDB.php");
 
-        $dbname = "3year";
-        mysqli_select_db($conn, $dbname);
+		$dbname = "3year";
+		mysqli_select_db($conn, $dbname);
 
-        $stmt = $conn->prepare("SELECT username FROM user_info WHERE username = ?");
-        $stmt->bind_param("s", $username);
-        $stmt->execute();
-        $result = $stmt->get_result();
-        $row = mysqli_fetch_array($result,MYSQLI_ASSOC);
-        $count = mysqli_num_rows($result);
+		$stmt = $conn->prepare("SELECT username FROM user_info WHERE username = ?");
+    	$stmt->bind_param("s", $username);
+    	$stmt->execute();
+		$result = $stmt->get_result();
+    	$row = mysqli_fetch_array($result,MYSQLI_ASSOC);
+		$count = mysqli_num_rows($result);
 
-        if($count == 0)
-        {   
-            $hash = password_hash($password, PASSWORD_DEFAULT);
+		if($count == 0)
+		{	
+			$hash = password_hash($password, PASSWORD_DEFAULT);
 
-            $stmt = $conn->prepare("INSERT INTO user_info (username, password, mails)
-            VALUES (?, ?, ?)");
-            $stmt->bind_param("sss", $username, $hash, $mails);
-            $stmt->execute();
+			$stmt = $conn->prepare("INSERT INTO user_info (username, password, mails)
+			VALUES (?, ?, ?)");
+			$stmt->bind_param("sss", $username, $hash, $mails);
+			$stmt->execute();
 
-    
-            echo "New record created successfully";
-    
+	
+    		echo "New record created successfully";
+	
 
-            $stmt->close();
-            $conn->close();
-        }
-        else
-            echo "Username already in use.";
-    }
+			$stmt->close();
+			$conn->close();
+		}
+		else
+			echo "Username already in use.";
+	}
+
 }
 
 function IsSafe($string)
 {
     if(preg_match('/[^a-zA-Z0-9_]/', $string) == 0)
     {
-    	//echo "true";
+    	echo "true";
         return true;
         
     }
     else
     {
-    	//echo "false";
+    	echo "false";
         return false;
         
     }

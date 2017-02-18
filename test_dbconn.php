@@ -1,7 +1,7 @@
 <?php
 	require("connectDB.php");
 
-	if($testDB)
+	if(connectDB($servername, $usernameDB, $passwordDB))
 	{
 		echo "Connected to the database successfully!";
 	}
