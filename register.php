@@ -33,7 +33,7 @@ function verifyReg($username, $password, $password2, $mails)
     }
     else
     {   
-        echo $username;
+        //echo $username;
         require("connectDB.php");
 
         $dbname = "3year";
@@ -56,14 +56,14 @@ function verifyReg($username, $password, $password2, $mails)
             $stmt->execute();
 
     
-            echo "New record created successfully";
+            echo "New record created successfully" . "<br>";
     
 
             $stmt->close();
             $conn->close();
         }
         else
-            echo "Username already in use.";
+            echo "Username already in use.\n";
     }
 }
 
@@ -71,13 +71,13 @@ function IsSafe($string)
 {
     if(preg_match('/[^a-zA-Z0-9_]/', $string) == 0)
     {
-    	echo "true";
+    	//echo "true";
         return true;
         
     }
     else
     {
-    	echo "false";
+    	//echo "false";
         return false;
         
     }
