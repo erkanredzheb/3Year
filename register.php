@@ -29,7 +29,11 @@ function verifyReg($username, $password, $password2, $mails)
     else if (strlen($password) < 5 && strlen($password2) < 5)
     {
         echo "Your password is too short.";
-    }   
+    }
+    else if (strlen($password) > 16 && strlen($password2) > 16)
+    {
+        echo "Your password is too long.";
+    }      
     // check if pass match.
     else if ($password != $password2) 
     {
