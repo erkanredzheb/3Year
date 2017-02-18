@@ -23,6 +23,9 @@ echo "Should say that the user already exists:" . "<br>";
 verifyReg($username = "magik", $password = "magik", $password2 = "magik", $mails = "magik@abv.bg");
 echo "<br>";
 
+$stmt = $conn->prepare("DELETE FROM user_info WHERE username = ?");
+$stmt->bind_param("s", $testuname);
+$stmt->execute();
 
 // Unit tests
 echo "<br>" . "Should say that the username is too short:" . "<br>";
