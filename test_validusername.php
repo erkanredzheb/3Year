@@ -36,7 +36,7 @@ echo "<br>" . "Should say that the username has forbidden symbols:" . "<br>";
 verifyReg($username = "magik~!", $password = "magik", $password2 = "magik", $mails = "magik@abv.bg");
 echo "<br>";
 
-
+$stmt->close();
 $conn->close();
 
 ?>

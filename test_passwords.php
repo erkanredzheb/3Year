@@ -33,6 +33,8 @@ echo "<br>" . "Should say that the password do not match:" . "<br>";
 verifyReg($username = "password", $password = "magik", $password2 = "magikk", $mails = "magik@abv.bg");
 echo "<br>";
 
+
+$stmt->close();
 $conn->close();
 
 
