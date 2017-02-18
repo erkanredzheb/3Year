@@ -5,10 +5,16 @@ if(isset($_POST['submitLogin']))
 	$passwordLogin = ($_POST['passwordLogin']);
 
 
-	require("connectDB.php");
+	verifyLogin($usernameLogin, $passwordLogin);
 
-	$dbname = "3year";
-	mysqli_select_db($conn, $dbname);
+}
+
+function verifyLogin($usernameLogin, $passwordLogin)
+{
+    require("connectDB.php");
+
+    $dbname = "3year";
+    mysqli_select_db($conn, $dbname);
 
     //$sql = "SELECT username, password FROM user_info WHERE username = '$usernameLogin'";
     $stmt = $conn->prepare("SELECT username, password FROM user_info WHERE username = ?");
@@ -24,18 +30,17 @@ if(isset($_POST['submitLogin']))
    
     if($count == 1)
     {
-    	if(password_verify($passwordLogin ,$row['password']))
-    		echo "Login successful!";
-    	else
-    		echo "Incorrect password!";
+        if(password_verify($passwordLogin ,$row['password']))
+            echo "Login successful!";
+        else
+            echo "Incorrect password!";
     }
     else
-    	echo "Username not valid!";
+        echo "Username not valid!";
 
 
     $stmt->close();
-	$conn->close();
-
+    $conn->close();
 }
 ?>
 
