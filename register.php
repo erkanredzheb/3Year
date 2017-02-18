@@ -21,6 +21,15 @@ function verifyReg($username, $password, $password2, $mails)
     {
         echo "The username is too short.";
     }
+    // check if username has not more than 16 chars.
+    else if (strlen($username) > 16) 
+    {
+        echo "The username is too long.";
+    }
+    else if (strlen($password) < 5 && strlen($password2) < 5)
+    {
+        echo "Your password is too short.";
+    }   
     // check if pass match.
     else if ($password != $password2) 
     {
