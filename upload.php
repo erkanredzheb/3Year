@@ -25,7 +25,7 @@ if(isset($_POST['submitimg']))
 
 	//echo $title . $category . $descr . $price;
 }	
-displayimg();
+
 function saveimg($title, $category, $descr, $price, $image)
 {
     	require("connectDB.php");
@@ -36,37 +36,11 @@ function saveimg($title, $category, $descr, $price, $image)
         $stmt = $conn->prepare("INSERT INTO product_info (title, category, description, price, img) VALUES (?, ?, ?, ?, ?)");
         $stmt->bind_param("sssis", $title, $category, $descr, $price, $image);
         $stmt->execute();
-
-    
+ 
         echo "Product uploaded successfully." . "<br>";
     
-
         $stmt->close();
         $conn->close();
-}
-
-function displayimg()
-{
-	require("connectDB.php");
-
-    $dbname = "3year";
-    mysqli_select_db($conn, $dbname);
-
-    $stmt = $conn->prepare("SELECT * FROM product_info");
-    $stmt->execute();
-    $result = $stmt->get_result();
-    while($row = mysqli_fetch_array($result,MYSQLI_ASSOC))
-    {	
-    	echo $row['title'] . "<br>";
-    	echo $row['category'] . "<br>";
-    	echo $row['description'] . "<br>";
-    	echo $row['price'] . "<br>";
-    	echo '<img height="300" width="300" src="data:image;base64, '.$row['img'].' ">' . "<br>";
-    }
-
-
-    $stmt->close();
-    $conn->close();
 }
 
 
