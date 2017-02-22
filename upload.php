@@ -1,6 +1,9 @@
 <?php
+
+
 if(isset($_POST['submitimg']))
 {
+
 	if(getimagesize($_FILES['image']['tmp_name']) == FALSE)
 	{
 		echo "Please select an image.";
@@ -15,13 +18,14 @@ if(isset($_POST['submitimg']))
 		$category = $_POST['state'];
 		$descr = $_POST['descr'];
 		$price = $_POST['price'];
+	
         saveimg($title, $category, $descr, $price, $image);
 		
 	}	
 
 	//echo $title . $category . $descr . $price;
 }	
-
+displayimg();
 function saveimg($title, $category, $descr, $price, $image)
 {
     	require("connectDB.php");
@@ -40,6 +44,31 @@ function saveimg($title, $category, $descr, $price, $image)
         $stmt->close();
         $conn->close();
 }
+
+function displayimg()
+{
+	require("connectDB.php");
+
+    $dbname = "3year";
+    mysqli_select_db($conn, $dbname);
+
+    $stmt = $conn->prepare("SELECT * FROM product_info");
+    $stmt->execute();
+    $result = $stmt->get_result();
+    while($row = mysqli_fetch_array($result,MYSQLI_ASSOC))
+    {	
+    	echo $row['title'] . "<br>";
+    	echo $row['category'] . "<br>";
+    	echo $row['description'] . "<br>";
+    	echo $row['price'] . "<br>";
+    	echo '<img height="300" width="300" src="data:image;base64, '.$row['img'].' ">' . "<br>";
+    }
+
+
+    $stmt->close();
+    $conn->close();
+}
+
 
 ?>
 
