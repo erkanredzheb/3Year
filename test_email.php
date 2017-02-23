@@ -24,6 +24,7 @@ $stmt->execute();
 echo "<br>" . "This sould say that the e-mail is not valid:" . "<br>";
 verifyReg($username = "email", $password = "magik", $password2 = "magik", $mails = "magik@abv");
 
+$stmt->close();
 $conn->close();
 
 ?>
