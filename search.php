@@ -13,15 +13,23 @@ if(isset($_POST['searchButton']))
     $stmt->bind_param("s", $search);
     $stmt->execute();
     $result = $stmt->get_result();
-   
-    while($row = mysqli_fetch_array($result,MYSQLI_ASSOC))
+    $count = mysqli_num_rows($result);
+
+    if($count > 0)
     {	
-    	echo $row['title'] . "<br>";
-    	echo $row['category'] . "<br>";
-    	echo $row['description'] . "<br>";
-    	echo $row['price'] . "<br>";
-    	echo '<img height="300" width="300" src="data:image;base64, '.$row['img'].' ">' . "<br>";
+    	while($row = mysqli_fetch_array($result,MYSQLI_ASSOC))
+    	{	
+    		echo $row['title'] . "<br>";
+    		echo $row['category'] . "<br>";
+    		echo $row['description'] . "<br>";
+    		echo $row['price'] . "<br>";
+    		echo '<img height="300" width="300" src="data:image;base64, '.$row['img'].' ">' . "<br>";
+    	}
     }
+    else
+    {
+    	echo "Results not found...";
+    }	
      
     $stmt->close();
     $conn->close();
@@ -34,7 +42,7 @@ if(isset($_POST['searchButton']))
 
 <form action="search.php" method="post">
 
-Search: <input type="text" name="search" value=""><br>
+Search: <input type="text" name="search"><br>
 
 <input type="submit" value="Go!" name="searchButton" />
 
