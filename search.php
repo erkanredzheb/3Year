@@ -2,14 +2,14 @@
 
 if(isset($_POST['searchButton']))
 {
-	$search = $_POST['search'];
+	$search = "%{$_POST['search']}%";
 	
     require("connectDB.php");
 
     $dbname = "3year";
     mysqli_select_db($conn, $dbname);
     
-    $stmt = $conn->prepare("SELECT * FROM product_info WHERE title = ?");
+    $stmt = $conn->prepare("SELECT * FROM product_info WHERE title LIKE ?");
     $stmt->bind_param("s", $search);
     $stmt->execute();
     $result = $stmt->get_result();
