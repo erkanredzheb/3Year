@@ -52,10 +52,13 @@ function saveimg($title, $category, $descr, $price, $image)
 			Name: <input type="text" name="title" value=""><br>
 			Categories: 
 			<select name="state">
-  				<option value="Home">Home</option>
-  				<option value="Fitness">Fitness</option>
-  				<option value="Cars">Cars</option>
-  				<option value="Computers">Computers</option>
+  				<option value="Fashion">Fashion</option>
+  				<option value="Home & Garden">Home & Garden</option>
+  				<option value="Electronics">Electronics</option>
+  				<option value="Leisure">Leisure</option>
+  				<option value="Collectables">Collectables</option>
+  				<option value="Health & Beauty">Health & Beauty</option>
+  				<option value="Motors">Motors</option>
 			</select>
 			<br/>
 			Description: <input type="text" name="descr" value=""><br>
