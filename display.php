@@ -18,6 +18,15 @@ function displayimg()
     	echo $row['description'] . "<br>";
     	echo $row['price'] . "<br>";
     	echo '<img height="300" width="300" src="data:image;base64, '.$row['img'].' ">' . "<br>";
+        ?>
+
+        <html>
+        <form action="buy.php" method="post">
+        <input type="submit" value="Buy" name="buy" />
+        <br>
+        <br>
+        </html>
+        <?php
     }
 
 
