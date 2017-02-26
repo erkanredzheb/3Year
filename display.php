@@ -18,15 +18,29 @@ function displayimg()
     	echo $row['description'] . "<br>";
     	echo $row['price'] . "<br>";
     	echo '<img height="300" width="300" src="data:image;base64, '.$row['img'].' ">' . "<br>";
-        ?>
+        
 
-        <html>
-        <form action="buy.php" method="post">
-        <input type="submit" value="Buy" name="buy" />
-        <br>
-        <br>
-        </html>
-        <?php
+        echo "<html>";
+        echo "<head>";
+            echo "<link rel='stylesheet' type='text/css' href='./style.css'>";
+            echo "<script src='./scripts.js'></script>";
+            echo "<script src='https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js'></script>";
+        echo "</head>";
+        echo "<body>";
+            
+
+        // <form action="buy.php" method="post">
+        // <input type="submit" value="Buy" name="buy" />
+
+
+        echo "<div class='buy_button' onclick=\"print_id('".$row['id']."')\">HI</div>";
+
+        echo "<br>";
+        echo "<br>";
+
+        echo "</body>";
+        echo "</html>";
+        
     }
 
 
