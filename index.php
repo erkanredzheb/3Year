@@ -1,4 +1,3 @@
 <?php
-	echo "Nicuu";
+echo "Welcome";
 ?>
-
