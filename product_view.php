@@ -8,7 +8,10 @@ function displayimg()
     $dbname = "3year";
     mysqli_select_db($conn, $dbname);
 
-    $stmt = $conn->prepare("SELECT * FROM product_info");
+    $id_product = $_GET['id'];
+
+    $stmt = $conn->prepare("SELECT * FROM product_info WHERE id = ?");
+    $stmt->bind_param("s", $id_product);
     $stmt->execute();
     $result = $stmt->get_result();
     while($row = mysqli_fetch_array($result,MYSQLI_ASSOC))
@@ -33,7 +36,7 @@ function displayimg()
         // <input type="submit" value="Buy" name="buy" />
 
 
-        echo "<div class='product_view_button' onclick=\"product_view('".$row['id']."')\">View</div>";
+        echo "<div class='buy_button' onclick=\"print_id('".$row['id']."')\">Buy</div>";
 
         echo "<br>";
         echo "<br>";
@@ -47,5 +50,7 @@ function displayimg()
     $stmt->close();
     $conn->close();
 }
+
+
 
 ?>

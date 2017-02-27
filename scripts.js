@@ -15,3 +15,8 @@ function print_id(id){
 
 	window.location.href = "./buy.php?id="+id;
 }
+
+function product_view(id){
+
+	window.location.href = "./product_view.php?id="+id;
+}
