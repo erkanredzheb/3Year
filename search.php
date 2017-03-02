@@ -3,7 +3,12 @@
 if(isset($_POST['searchButton']))
 {
 	$search = "%{$_POST['search']}%";
-	
+	if(strlen($search) < 3)
+    {
+        echo "Please provide a word!";
+    }
+    else
+    {    
     require("connectDB.php");
 
     $dbname = "3year";
@@ -50,7 +55,7 @@ if(isset($_POST['searchButton']))
      
     $stmt->close();
     $conn->close();
-
+    } // else provide a word
 }	
 
 ?>
