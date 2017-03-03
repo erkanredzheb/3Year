@@ -14,13 +14,21 @@ function displayimg()
     $stmt->bind_param("s", $id_product);
     $stmt->execute();
     $result = $stmt->get_result();
-    while($row = mysqli_fetch_array($result,MYSQLI_ASSOC))
-    {	
+    $row = mysqli_fetch_array($result,MYSQLI_ASSOC);
+    	
     	echo $row['title'] . "<br>";
     	echo $row['category'] . "<br>";
     	echo $row['description'] . "<br>";
     	echo $row['price'] . "<br>";
     	echo '<img height="300" width="300" src="data:image;base64, '.$row['img'].' ">' . "<br>";
+
+        // Increment number of views for the product.
+        $counter = $row['viewCounter'];
+        $counter++;
+        $stmt = $conn->prepare("UPDATE product_info SET viewCounter = ? WHERE id = ?");
+        $stmt->bind_param("ii", $counter, $id_product);
+        $stmt->execute();
+
         
 
         echo "<html>";
@@ -32,10 +40,6 @@ function displayimg()
         echo "<body>";
             
 
-        // <form action="buy.php" method="post">
-        // <input type="submit" value="Buy" name="buy" />
-
-
         echo "<div class='buy_button' onclick=\"print_id('".$row['id']."')\">Buy</div>";
 
         echo "<br>";
@@ -44,7 +48,7 @@ function displayimg()
         echo "</body>";
         echo "</html>";
         
-    }
+    
 
 
     $stmt->close();
