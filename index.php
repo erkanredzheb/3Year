@@ -1,10 +1,19 @@
 <?php
 session_start();
-echo "Hi, " . $_SESSION["user"] . "<br>";
+if(isset($_SESSION["user"]))
+{
+    echo "Hi, " . $_SESSION["user"] . "<br>";
+    echo "<a href=\"logout.php\">Log out</a>";
+    echo "<br>";
+}
+else
+{
+    echo "<a href=\"login.php\">Sign in</a>";
+    echo "<br>";
+}    
+
 echo "Most popular products" . "<br>";
 require("connectDB.php");
-echo "<a href=\"login.php\">Login</a>";
-echo "<br>";
 
 $dbname = "3year";
 mysqli_select_db($conn, $dbname);
