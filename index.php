@@ -1,4 +1,6 @@
 <?php
+session_start();
+echo "Hi, " . $_SESSION["user"] . "<br>";
 echo "Most popular products" . "<br>";
 require("connectDB.php");
 echo "<a href=\"login.php\">Login</a>";

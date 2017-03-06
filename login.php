@@ -31,7 +31,13 @@ function verifyLogin($usernameLogin, $passwordLogin)
     if($count == 1)
     {
         if(password_verify($passwordLogin ,$row['password']))
+        {    
             echo "Login successful!";
+            session_start();
+            $_SESSION["user"] = $usernameLogin;
+            header("Location: http://localhost/3Year/index.php");
+            exit();
+        }   
         else
             echo "Incorrect password!";
     }
