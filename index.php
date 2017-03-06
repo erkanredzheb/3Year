@@ -1,6 +1,8 @@
 <?php
 echo "Most popular products" . "<br>";
 require("connectDB.php");
+echo "<a href=\"login.php\">Login</a>";
+echo "<br>";
 
 $dbname = "3year";
 mysqli_select_db($conn, $dbname);
