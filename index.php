@@ -5,6 +5,7 @@ if(isset($_SESSION["user"]))
     echo "Hi, " . $_SESSION["user"] . "<br>";
     echo "<a href=\"logout.php\">Log out</a>";
     echo " <a href=\"upload.php\">Sell</a>";
+    echo " <a href=\"myitems.php\">My Items</a>";
     echo "<br>";
 }
 else
