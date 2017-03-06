@@ -1,5 +1,11 @@
 <?php
+session_start();
+if(!isset($_SESSION["user"]))
+{
+	header("Location: login.php");
+}
 
+ echo "Hi, " . $_SESSION["user"] . "<br>";
 
 if(isset($_POST['submitimg']))
 {
@@ -33,10 +39,10 @@ function saveimg($title, $category, $descr, $price, $image)
         $dbname = "3year";
         mysqli_select_db($conn, $dbname);
 
-        $stmt = $conn->prepare("INSERT INTO product_info (title, category, description, price, img) VALUES (?, ?, ?, ?, ?)");
-        $stmt->bind_param("sssis", $title, $category, $descr, $price, $image);
+        $stmt = $conn->prepare("INSERT INTO product_info (user_id, title, category, description, price, img) VALUES (?, ?, ?, ?, ?, ?)");
+        $stmt->bind_param("ssssis", $_SESSION["user"], $title, $category, $descr, $price, $image);
         $stmt->execute();
- 
+
         echo "Product uploaded successfully." . "<br>";
     
         $stmt->close();
