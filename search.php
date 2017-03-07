@@ -35,6 +35,10 @@ if(isset($_POST['searchButton']))
     {	
     	while($row = mysqli_fetch_array($result,MYSQLI_ASSOC))
     	{	
+
+           if($row['boughtby'] == NULL)
+           {   
+
     		echo $row['title'] . "<br>";
             echo $row['category'] . "<br>";
             echo $row['description'] . "<br>";
@@ -58,7 +62,9 @@ if(isset($_POST['searchButton']))
 
             echo "</body>";
             echo "</html>";
-    	   }
+
+          }
+    	} // while
     }
     else
     {

@@ -44,6 +44,10 @@ $stmt = $conn->prepare("UPDATE user_info SET acc_balance = ? WHERE username = ?"
 $stmt->bind_param("is", $newAccBalSeller, $sellerID);
 $stmt->execute();
 
+$stmt = $conn->prepare("UPDATE product_info SET boughtby = ? WHERE id = ?");
+$stmt->bind_param("si", $userID, $id);
+$stmt->execute();
+
 
 
 $stmt->close();

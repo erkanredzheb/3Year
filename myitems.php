@@ -18,6 +18,9 @@ mysqli_select_db($conn, $dbname);
 
 while($row = mysqli_fetch_array($result,MYSQLI_ASSOC))
    {	
+      if($row['boughtby'] == NULL)
+      { 
+        echo "THE ITEM IS ACTIVE" . "<br>";
     	echo $row['title'] . "<br>";
     	echo $row['category'] . "<br>";
     	echo $row['description'] . "<br>";
@@ -41,6 +44,34 @@ while($row = mysqli_fetch_array($result,MYSQLI_ASSOC))
 
         echo "</body>";
         echo "</html>";
+      }
+      else
+      {
+        echo "THE ITEM HAS BEEN ALREADY SOLD" . "<br>";
+        echo $row['title'] . "<br>";
+        echo $row['category'] . "<br>";
+        echo $row['description'] . "<br>";
+        echo $row['price'] . "<br>";
+        echo '<img height="300" width="300" src="data:image;base64, '.$row['img'].' ">' . "<br>";
+        
+
+        echo "<html>";
+        echo "<head>";
+            echo "<link rel='stylesheet' type='text/css' href='./style.css'>";
+            echo "<script src='./scripts.js'></script>";
+            echo "<script src='https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js'></script>";
+        echo "</head>";
+        echo "<body>";
+            
+
+        echo "<div class='product_view_button' onclick=\"product_view('".$row['id']."')\">View</div>";
+
+        echo "<br>";
+        echo "<br>";
+
+        echo "</body>";
+        echo "</html>";  
+      }  
         
     }
 

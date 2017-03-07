@@ -1,21 +1,30 @@
 <?php
 
-displayimg();
-function displayimg()
+session_start();
+
+if(!isset($_SESSION["user"]))
 {
-	require("connectDB.php");
+	header("Location: login.php");
+}
 
-    $dbname = "3year";
-    mysqli_select_db($conn, $dbname);
+$currUser = $_SESSION["user"];
 
-    $stmt = $conn->prepare("SELECT * FROM product_info");
-    $stmt->execute();
-    $result = $stmt->get_result();
-    while($row = mysqli_fetch_array($result,MYSQLI_ASSOC))
-    {	
 
-        if($row['boughtby'] == NULL)
-        {    
+require("connectDB.php");
+
+$dbname = "3year";
+mysqli_select_db($conn, $dbname);
+
+$stmt = $conn->prepare("SELECT * FROM product_info WHERE boughtby = ?");
+$stmt->bind_param("s", $currUser);
+$stmt->execute();
+$result = $stmt->get_result();
+$count = mysqli_num_rows($result);
+
+if($count > 0)
+{	
+	while($row = mysqli_fetch_array($result,MYSQLI_ASSOC))
+	{	  
     	echo $row['title'] . "<br>";
     	echo $row['category'] . "<br>";
     	echo $row['description'] . "<br>";
@@ -41,14 +50,10 @@ function displayimg()
 
         echo "</body>";
         echo "</html>";
-
-        }
+     }   
         
-    }
-
-
-    $stmt->close();
-    $conn->close();
 }
+else
+	echo "You haven't bought anything yet.";
 
 ?>
