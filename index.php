@@ -32,6 +32,7 @@ $stmt = $conn->prepare("SELECT * FROM product_info ORDER BY viewCounter DESC LIM
     	echo $row['description'] . "<br>";
     	echo $row['price'] . "<br>";
     	echo '<img height="300" width="300" src="data:image;base64, '.$row['img'].' ">' . "<br>";
+        echo "By " . $row['user_id'] . "<br>";
         
 
         echo "<html>";
@@ -71,6 +72,7 @@ $stmt = $conn->prepare("SELECT * FROM product_info ORDER BY viewCounter DESC LIM
     	echo $row['description'] . "<br>";
     	echo $row['price'] . "<br>";
     	echo '<img height="300" width="300" src="data:image;base64, '.$row['img'].' ">' . "<br>";
+        echo "By " . $row['user_id'] . "<br>";
         
 
         echo "<html>";

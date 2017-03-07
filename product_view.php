@@ -21,6 +21,7 @@ function displayimg()
     	echo $row['description'] . "<br>";
     	echo $row['price'] . "<br>";
     	echo '<img height="300" width="300" src="data:image;base64, '.$row['img'].' ">' . "<br>";
+        echo "By " . $row['user_id'] . "<br>";
 
         // Increment number of views for the product.
         $counter = $row['viewCounter'];
