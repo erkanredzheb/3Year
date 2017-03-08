@@ -3,6 +3,12 @@
 session_start();
 $id = $_GET['id'];
 
+if(!isset($_SESSION["user"]))
+{
+	header("Location: login.php");
+}
+
+
 require("connectDB.php");
 $dbname = "3year";
 mysqli_select_db($conn, $dbname);
