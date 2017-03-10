@@ -25,23 +25,24 @@ if(isset($_POST['submitimg']))
 		$category = $_POST['state'];
 		$descr = $_POST['descr'];
 		$price = $_POST['price'];
+		$auction = $_POST['auction'];
 	
-        saveimg($title, $category, $descr, $price, $image);
+        saveimg($title, $category, $descr, $price, $image, $auction);
 		
 	}	
 
 	//echo $title . $category . $descr . $price;
 }	
 
-function saveimg($title, $category, $descr, $price, $image)
+function saveimg($title, $category, $descr, $price, $image, $auction)
 {
     	require("connectDB.php");
 
         $dbname = "3year";
         mysqli_select_db($conn, $dbname);
 
-        $stmt = $conn->prepare("INSERT INTO product_info (user_id, title, category, description, price, img) VALUES (?, ?, ?, ?, ?, ?)");
-        $stmt->bind_param("ssssis", $_SESSION["user"], $title, $category, $descr, $price, $image);
+        $stmt = $conn->prepare("INSERT INTO product_info (user_id, title, category, description, price, img, auction_type) VALUES (?, ?, ?, ?, ?, ?, ?)");
+        $stmt->bind_param("ssssiss", $_SESSION["user"], $title, $category, $descr, $price, $image, $auction);
         $stmt->execute();
 
         echo "Product uploaded successfully." . "<br>";
@@ -68,8 +69,15 @@ function saveimg($title, $category, $descr, $price, $image)
   				<option value="Motors">Motors</option>
 			</select>
 			<br/>
+			
 			Description: <input type="text" name="descr" value=""><br>
 			Price: <input type="text" name="price" value=""><br>
+			Auction type:
+			<select name="auction">
+  				<option value="BN">Buy Now</option>
+  				<option value="EA">English Auction</option>
+			</select>
+			<br/>
 			<input type="file" name="image">
 			<br/><br/>
 			<input type="submit" name="submitimg" value="Upload" />
