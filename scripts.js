@@ -20,3 +20,8 @@ function product_view(id){
 
 	window.location.href = "./product_view.php?id="+id;
 }
+
+function print_bid(id){
+
+	window.location.href = "./bid.php?id="+id;
+}

@@ -21,7 +21,10 @@ function displayimg()
     	echo $row['description'] . "<br>";
     	echo $row['price'] . "<br>";
     	echo '<img height="300" width="300" src="data:image;base64, '.$row['img'].' ">' . "<br>";
+        echo $row['auction_type'] . "<br>";
         echo "By " . $row['user_id'] . "<br>";
+
+        $auctionType = $row['auction_type'];
 
         // Increment number of views for the product.
         $counter = $row['viewCounter'];
@@ -40,8 +43,14 @@ function displayimg()
         echo "</head>";
         echo "<body>";
             
-
-        echo "<div class='buy_button' onclick=\"print_id('".$row['id']."')\">Buy</div>";
+        if(strcmp($auctionType, "Buy Now") == 0)
+        {
+          echo "<div class='buy_button' onclick=\"print_id('".$row['id']."')\">Buy</div>";
+        }
+        else if(strcmp($auctionType, "English Auction") == 0) 
+        {
+          echo "<div class='bid_button' onclick=\"print_bid('".$row['id']."')\">Bid</div>"; 
+        } 
 
         echo "<br>";
         echo "<br>";
