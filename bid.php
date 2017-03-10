@@ -20,16 +20,29 @@ if(!isset($_SESSION["user"]))
 if(isset($_POST['placebid']))
 {
 	$thebid = ($_POST['thebid']);
-	echo $thebid;
-	echo "Value is: " . $_COOKIE[$cookie_name];
-
+	
 	require("connectDB.php");
 	$dbname = "3year";
 	mysqli_select_db($conn, $dbname);
 
-	$stmt = $conn->prepare("INSERT INTO bidding_info (product_id, bidder_id, amount) VALUES (?, ?, ?)");
-    $stmt->bind_param("isi", $_COOKIE[$cookie_name], $_SESSION['user'], $thebid);
+	$stmt = $conn->prepare("SELECT price FROM product_info WHERE id = ?");
+    $stmt->bind_param("i", $_COOKIE[$cookie_name]);
     $stmt->execute();
+    $result = $stmt->get_result();
+
+    while($row = mysqli_fetch_array($result,MYSQLI_ASSOC))
+	{	
+    	$theprice = $row['price'];
+	}
+
+    if($theprice < $thebid)
+    {	
+	  $stmt = $conn->prepare("INSERT INTO bidding_info (product_id, bidder_id, amount) VALUES (?, ?, ?)");
+      $stmt->bind_param("isi", $_COOKIE[$cookie_name], $_SESSION['user'], $thebid);
+      $stmt->execute();
+    }
+    else
+    { echo "Please provide a higher number than the current highest bid!"; }  
 
 
     $stmt->close();
