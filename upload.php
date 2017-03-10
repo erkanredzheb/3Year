@@ -74,8 +74,8 @@ function saveimg($title, $category, $descr, $price, $image, $auction)
 			Price: <input type="text" name="price" value=""><br>
 			Auction type:
 			<select name="auction">
-  				<option value="BN">Buy Now</option>
-  				<option value="EA">English Auction</option>
+  				<option value="Buy Now">Buy Now</option>
+  				<option value="English Auction">English Auction</option>
 			</select>
 			<br/>
 			<input type="file" name="image">
