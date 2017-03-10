@@ -25,24 +25,44 @@ if(isset($_POST['placebid']))
 	$dbname = "3year";
 	mysqli_select_db($conn, $dbname);
 
-	$stmt = $conn->prepare("SELECT price FROM product_info WHERE id = ?");
+	$stmt = $conn->prepare("SELECT amount FROM bidding_info WHERE product_id = ?");
     $stmt->bind_param("i", $_COOKIE[$cookie_name]);
     $stmt->execute();
     $result = $stmt->get_result();
+    $row = mysqli_fetch_array($result,MYSQLI_ASSOC);
+    $count = mysqli_num_rows($result);
 
-    while($row = mysqli_fetch_array($result,MYSQLI_ASSOC))
-	{	
-    	$theprice = $row['price'];
-	}
+    if($count > 0)
+    {	
+
+      while($row = mysqli_fetch_array($result,MYSQLI_ASSOC))
+	  {	
+    	  $theprice = $row['amount'];
+	  }
+	}  
+    else
+    {	
+	  $stmt = $conn->prepare("SELECT price FROM product_info WHERE id = ?");
+      $stmt->bind_param("i", $_COOKIE[$cookie_name]);
+      $stmt->execute();
+      $result = $stmt->get_result();
+
+      while($row = mysqli_fetch_array($result,MYSQLI_ASSOC))
+	  {	
+    	  $theprice = $row['price'];
+	  }  
+    }
+
 
     if($theprice < $thebid)
     {	
 	  $stmt = $conn->prepare("INSERT INTO bidding_info (product_id, bidder_id, amount) VALUES (?, ?, ?)");
       $stmt->bind_param("isi", $_COOKIE[$cookie_name], $_SESSION['user'], $thebid);
       $stmt->execute();
+      header("Location: index.php");
     }
     else
-    { echo "Please provide a higher number than the current highest bid!"; }  
+    { echo "Please provide a bigger amount than " . $theprice; }  
 
 
     $stmt->close();
