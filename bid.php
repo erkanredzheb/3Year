@@ -59,6 +59,12 @@ if(isset($_POST['placebid']))
 	  $stmt = $conn->prepare("INSERT INTO bidding_info (product_id, bidder_id, amount) VALUES (?, ?, ?)");
       $stmt->bind_param("isi", $_COOKIE[$cookie_name], $_SESSION['user'], $thebid);
       $stmt->execute();
+
+      $one = "1";
+      $stmt = $conn->prepare("UPDATE product_info SET bid_placed = (?) WHERE id = ?");
+      $stmt->bind_param("ii", $one, $_COOKIE[$cookie_name]);
+      $stmt->execute();
+
       header("Location: index.php");
     }
     else
