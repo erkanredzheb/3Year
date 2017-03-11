@@ -59,9 +59,17 @@ while($row = mysqli_fetch_array($result,MYSQLI_ASSOC))
       $stmt->bind_param("is",$accMinus, $row2['bidder_id']);
       $stmt->execute();	
 
+      $stmt = $conn->prepare("UPDATE product_info SET boughtby = ? WHERE id = ?");
+	  $stmt->bind_param("si", $row2['bidder_id'], $row['id']);
+	  $stmt->execute();
+
+	  $stmt = $conn->prepare("INSERT INTO winner_info (product_id, winner_id, amount) VALUES (?, ?, ?)");
+      $stmt->bind_param("isi",$row['id'] ,$row2['bidder_id'], $row2['amount']);
+      $stmt->execute();	
+
+      $stmt = $conn->prepare("TRUNCATE TABLE bidding_info");
+      $stmt->execute();
 	}	
-
-
 
 }
 
