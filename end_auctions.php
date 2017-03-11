@@ -13,6 +13,7 @@ $result = $stmt->get_result();
 
 while($row = mysqli_fetch_array($result,MYSQLI_ASSOC))
 {
+
 	// The acc of the uploader.
     $stmt = $conn->prepare("SELECT acc_balance FROM user_info WHERE username = ?");
 	$stmt->bind_param("s", $row['user_id']);
@@ -20,7 +21,7 @@ while($row = mysqli_fetch_array($result,MYSQLI_ASSOC))
 	$result3 = $stmt->get_result();
     while($row3 = mysqli_fetch_array($result3,MYSQLI_ASSOC))
     {
-    	$accBal = $row3['acc_balance'];
+    	$accBalupl = $row3['acc_balance'];
     }
 
 	$stmt = $conn->prepare("SELECT * FROM bidding_info WHERE product_id = ? ORDER BY amount DESC LIMIT 1");
@@ -30,20 +31,37 @@ while($row = mysqli_fetch_array($result,MYSQLI_ASSOC))
 
 	while($row2 = mysqli_fetch_array($result2,MYSQLI_ASSOC))
 	{
-	  $accPlus = $accBal + $row2['amount'];
-	  echo $accPlus . "<br>";
+	  echo "The amound bid " . $row2['amount'] . "<br>";
+
+	  $accPlus = $accBalupl + $row2['amount'];
+	  echo "The new acc of uploader " . $accPlus . " by " . $row['user_id'] . "<br>";
+
 	  $stmt = $conn->prepare("UPDATE user_info SET acc_balance = (?) WHERE username = ?");
       $stmt->bind_param("is",$accPlus ,$row['user_id']);
       $stmt->execute();	
 
 
-	  $accMinus = $accBal - $row2['amount']; 
-	    echo $accMinus . "<br>";
+
+      // Acc balance of bidder.
+      $stmt = $conn->prepare("SELECT acc_balance FROM user_info WHERE username = ?");
+	  $stmt->bind_param("s", $row2['bidder_id']);
+	  $stmt->execute();
+	  $result4 = $stmt->get_result();
+      while($row4 = mysqli_fetch_array($result4,MYSQLI_ASSOC))
+      {
+    	 $accBalbid = $row4['acc_balance'];
+      }  
+
+	  $accMinus = $accBalbid - $row2['amount']; 
+	  echo "The new account of the buyer " . $accMinus . " by " . $row2['bidder_id'] . "<br>";
      
       $stmt = $conn->prepare("UPDATE user_info SET acc_balance = (?) WHERE username = ?");
       $stmt->bind_param("is",$accMinus, $row2['bidder_id']);
       $stmt->execute();	
+
 	}	
+
+
 
 }
 
