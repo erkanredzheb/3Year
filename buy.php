@@ -35,17 +35,28 @@ $result = $stmt->get_result();
 
 while($row = mysqli_fetch_array($result,MYSQLI_ASSOC))
 {	
-    	$accBal = $row['acc_balance'];
+    	$accBalBuyer = $row['acc_balance'];
     	
 }
 
-$newAccBalBuyer = $accBal - $price;
+$stmt = $conn->prepare("SELECT acc_balance FROM user_info WHERE username = ?");
+$stmt->bind_param("s", $sellerID);
+$stmt->execute();
+$result = $stmt->get_result();
+
+while($row = mysqli_fetch_array($result,MYSQLI_ASSOC))
+{	
+    	$accBalSeller = $row['acc_balance'];
+    	
+}
+
+$newAccBalBuyer = $accBalBuyer - $price;
 $stmt = $conn->prepare("UPDATE user_info SET acc_balance = ? WHERE username = ?");
 $stmt->bind_param("is", $newAccBalBuyer, $userID);
 $stmt->execute();
 
 
-$newAccBalSeller = $accBal + $price;
+$newAccBalSeller = $accBalSeller + $price;
 $stmt = $conn->prepare("UPDATE user_info SET acc_balance = ? WHERE username = ?");
 $stmt->bind_param("is", $newAccBalSeller, $sellerID);
 $stmt->execute();
