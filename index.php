@@ -82,15 +82,21 @@ $result = $stmt->get_result();
 $num_rows = mysqli_num_rows($result);
 $motorsN = $num_rows;
 
-
-
-echo "<a href=\"fashion.php\">Fashion(" . $fashionN . ")</a>";
+echo "<div class = \"wrapper\">";
+echo "<ul>";
+echo "<li><a href=\"fashion.php\">Fashion(" . $fashionN . ")</a>";
 echo " <a href=\"home&garden.php\">Home & Garden(" . $hgN . ")</a>";
 echo " <a href=\"electronics.php\">Electronics(" . $elecN . ")</a>";
 echo " <a href=\"leisure.php\">Leisure(" . $leisN . ")</a>";
 echo " <a href=\"collectables.php\">Collectables(" . $collecN . ")</a>";
 echo " <a href=\"health&beauty.php\">Health & Beauty(" . $hbN . ")</a>";
 echo " <a href=\"motors.php\">Motors(" . $motorsN . ")</a>";
+echo "</li>";
+echo "</ul>";
+echo "</div>";
+
+echo "<br>";
+echo "<br>";
 echo "<br>";
 
 echo "Most popular products" . "<br>";

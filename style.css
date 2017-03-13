@@ -1,3 +1,39 @@
+.wrapper{
+	margin: 0;
+	padding: 0;
+}
+.wrapper ul{
+	margin: 0;
+	margin-left: 250px;
+	margin-top: 100px;
+	padding: 0;
+	line-height: 30px;
+	
+}
+
+.wrapper li{
+	margin: 0;
+	padding: 0;
+	list-style: none;
+    text-align: center;
+    display: block;
+       
+ }
+
+.wrapper ul li a{
+    background-color: #E0ECF8;
+    color: #190707;
+    
+    float: left;
+    position: relative;
+    height: 30px;
+    width: 200px;
+    display: block;
+    border: 1px solid #000;
+    text-align: center;
+    
+
+}
 .buy_button{
 	width: 100px;
 	height: 25px;
