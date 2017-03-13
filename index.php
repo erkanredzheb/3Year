@@ -15,26 +15,90 @@ else
     echo "<br>";
 }    
 
-echo "<a href=\"fashion.php\">Fashion</a>";
-echo " <a href=\"home&garden.php\">Home & Garden</a>";
-echo " <a href=\"electronics.php\">Electronics</a>";
-echo " <a href=\"leisure.php\">Leisure</a>";
-echo " <a href=\"collectables.php\">Collectables</a>";
-echo " <a href=\"health&beauty.php\">Health & Beauty</a>";
-echo " <a href=\"motors.php\">Motors</a>";
-echo "<br>";
+$null = null;
+$fashion = "Fashion";
+$hg = "Home & Garden";
+$elec = "Electronics";
+$leis = "Leisure";
+$collec = "Collectables";
+$hb = "Health & Beauty";
+$motors = "Motors";
 
-echo "Most popular products" . "<br>";
 require("connectDB.php");
 
 $dbname = "3year";
 mysqli_select_db($conn, $dbname);
 
+$stmt = $conn->prepare("SELECT id FROM product_info WHERE category = ? AND boughtby IS NULL");
+$stmt->bind_param("s", $fashion);
+$stmt->execute();
+$result = $stmt->get_result();
+$num_rows = mysqli_num_rows($result);
+$fashionN = $num_rows;
+
+$stmt = $conn->prepare("SELECT id FROM product_info WHERE category = ? AND boughtby IS NULL");
+$stmt->bind_param("s", $hg);
+$stmt->execute();
+$result = $stmt->get_result();
+$num_rows = mysqli_num_rows($result);
+$hgN = $num_rows;
+
+$stmt = $conn->prepare("SELECT id FROM product_info WHERE category = ? AND boughtby IS NULL");
+$stmt->bind_param("s", $elec);
+$stmt->execute();
+$result = $stmt->get_result();
+$num_rows = mysqli_num_rows($result);
+$elecN = $num_rows;
+
+
+$stmt = $conn->prepare("SELECT id FROM product_info WHERE category = ? AND boughtby IS NULL");
+$stmt->bind_param("s", $leis);
+$stmt->execute();
+$result = $stmt->get_result();
+$num_rows = mysqli_num_rows($result);
+$leisN = $num_rows;
+
+
+$stmt = $conn->prepare("SELECT id FROM product_info WHERE category = ? AND boughtby IS NULL");
+$stmt->bind_param("s", $collec);
+$stmt->execute();
+$result = $stmt->get_result();
+$num_rows = mysqli_num_rows($result);
+$collecN = $num_rows;
+
+
+$stmt = $conn->prepare("SELECT id FROM product_info WHERE category = ? AND boughtby IS NULL");
+$stmt->bind_param("s", $hb);
+$stmt->execute();
+$result = $stmt->get_result();
+$num_rows = mysqli_num_rows($result);
+$hbN = $num_rows;
+
+
+$stmt = $conn->prepare("SELECT id FROM product_info WHERE category = ? AND boughtby IS NULL");
+$stmt->bind_param("s", $motors);
+$stmt->execute();
+$result = $stmt->get_result();
+$num_rows = mysqli_num_rows($result);
+$motorsN = $num_rows;
+
+
+
+echo "<a href=\"fashion.php\">Fashion(" . $fashionN . ")</a>";
+echo " <a href=\"home&garden.php\">Home & Garden(" . $hgN . ")</a>";
+echo " <a href=\"electronics.php\">Electronics(" . $elecN . ")</a>";
+echo " <a href=\"leisure.php\">Leisure(" . $leisN . ")</a>";
+echo " <a href=\"collectables.php\">Collectables(" . $collecN . ")</a>";
+echo " <a href=\"health&beauty.php\">Health & Beauty(" . $hbN . ")</a>";
+echo " <a href=\"motors.php\">Motors(" . $motorsN . ")</a>";
+echo "<br>";
+
+echo "Most popular products" . "<br>";
+
+
 $stmt = $conn->prepare("SELECT * FROM product_info ORDER BY viewCounter DESC LIMIT 4");
-
-
-    $stmt->execute();
-    $result = $stmt->get_result();
+$stmt->execute();
+$result = $stmt->get_result();
     while($row = mysqli_fetch_array($result,MYSQLI_ASSOC))
     {	
         if($row["boughtby"] == NULL)
