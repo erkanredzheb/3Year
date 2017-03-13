@@ -105,9 +105,14 @@ echo "<br>";
 echo "<br>";
 echo "<br>";
 
-echo "Most popular products" . "<br>";
+echo "<div class = \"mptext\">";
+    echo "Most popular products" . "<br>";
+echo "</div>";
 
 
+echo "<div class = \"mostpopular\">";
+echo "<ul>";
+echo "<li>";
 $stmt = $conn->prepare("SELECT * FROM product_info ORDER BY viewCounter DESC LIMIT 4");
 $stmt->execute();
 $result = $stmt->get_result();
@@ -144,6 +149,9 @@ $result = $stmt->get_result();
         }
         
     }
+echo "</li>";
+echo "</ul>";   
+echo "</div>";
 
 
     echo "Recently added" . "<br>";

@@ -50,6 +50,44 @@ body{
 	margin-top: 50px;
 }
 
+.mptext{
+	margin-left: 250px;
+}
+
+.mostpopular{
+	margin: 0;
+	padding: 0;
+	margin-left: 250px;
+	width: 305px;
+	height: 1500px;
+	border: 1px solid #000;
+	position: relative;
+
+}
+
+.mostpopular ul{
+	margin: 0;
+	padding: 0;
+	float: left;
+    position: relative;
+    display: inline-block;
+}
+
+.mostpopular ul li{
+	margin: 0;
+	padding: 0;
+	list-style: none;
+	float: left;
+    position: relative;
+    display: block;
+}
+
+.mostpopular ul li a{
+	margin: 0;
+	padding: 0;
+    
+}
+
 .buy_button{
 	width: 100px;
 	height: 25px;
