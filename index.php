@@ -113,7 +113,7 @@ echo "</div>";
 echo "<div class = \"mostpopular\">";
 echo "<ul>";
 echo "<li>";
-$stmt = $conn->prepare("SELECT * FROM product_info ORDER BY viewCounter DESC LIMIT 4");
+$stmt = $conn->prepare("SELECT * FROM product_info ORDER BY viewCounter DESC LIMIT 6");
 $stmt->execute();
 $result = $stmt->get_result();
     while($row = mysqli_fetch_array($result,MYSQLI_ASSOC))
@@ -153,12 +153,18 @@ echo "</li>";
 echo "</ul>";   
 echo "</div>";
 
+echo "<div class = \"raddedtext\">";
+echo "Recently added" . "<br>";
+echo "</div>";
 
-    echo "Recently added" . "<br>";
-    echo "<br>";
-    echo "<br>";
+echo "<div class = \"radded\">";
+echo "<ul>";
+echo "<li>";
 
-	$stmt = $conn->prepare("SELECT * FROM product_info ORDER BY date DESC LIMIT 4");
+
+  
+
+	$stmt = $conn->prepare("SELECT * FROM product_info ORDER BY date DESC LIMIT 6");
 
 
     $stmt->execute();
@@ -197,6 +203,9 @@ echo "</div>";
         
     }
 
+echo "</li>";
+echo "</ul>";   
+echo "</div>";
 
     $stmt->close();
     $conn->close();

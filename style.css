@@ -51,17 +51,16 @@ body{
 }
 
 .mptext{
-	margin-left: 250px;
+	margin-left: 500px;
 }
 
 .mostpopular{
 	margin: 0;
 	padding: 0;
-	margin-left: 250px;
+	margin-left: 500px;
 	width: 305px;
-	height: 1500px;
-	border: 1px solid #000;
-	position: relative;
+	height: 100%;
+	
 
 }
 
@@ -83,6 +82,45 @@ body{
 }
 
 .mostpopular ul li a{
+	margin: 0;
+	padding: 0;
+    
+}
+
+.raddedtext{
+	margin-left: 1150px;
+	margin-top: -970px;
+}
+
+
+.radded{
+	margin: 0;
+	padding: 0;
+	margin-left: 1150px;
+	width: 305px;
+	height: 100%;
+	
+
+}
+
+.radded ul{
+	margin: 0;
+	padding: 0;
+	float: left;
+    position: relative;
+    display: inline-block;
+}
+
+.radded ul li{
+	margin: 0;
+	padding: 0;
+	list-style: none;
+	float: left;
+    position: relative;
+    display: block;
+}
+
+.radded ul li a{
 	margin: 0;
 	padding: 0;
     
