@@ -15,6 +15,15 @@ else
     echo "<br>";
 }    
 
+echo "<a href=\"fashion.php\">Fashion</a>";
+echo " <a href=\"home&garden.php\">Home & Garden</a>";
+echo " <a href=\"electronics.php\">Electronics</a>";
+echo " <a href=\"leisure.php\">Leisure</a>";
+echo " <a href=\"collectables.php\">Collectables</a>";
+echo " <a href=\"health&beauty.php\">Health & Beauty</a>";
+echo " <a href=\"motors.php\">Motors</a>";
+echo "<br>";
+
 echo "Most popular products" . "<br>";
 require("connectDB.php");
 
