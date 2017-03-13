@@ -33,6 +33,12 @@ function displayimg()
         $stmt->bind_param("ii", $counter, $id_product);
         $stmt->execute();
 
+        $stmt = $conn->prepare("SELECT amount FROM bidding_info WHERE product_id = ? ORDER BY amount DESC LIMIT 1");
+        $stmt->bind_param("i", $id_product);
+        $stmt->execute();
+        $result2 = $stmt->get_result();
+        $row2 = mysqli_fetch_array($result2,MYSQLI_ASSOC);
+        
         
 
         echo "<html>";
@@ -45,10 +51,12 @@ function displayimg()
             
         if(strcmp($auctionType, "Buy Now") == 0)
         {
+
           echo "<div class='buy_button' onclick=\"print_id('".$row['id']."')\">Buy</div>";
         }
         else if(strcmp($auctionType, "English Auction") == 0) 
         {
+          echo "The current highest bid is: " . $row2['amount'] . "<br>";
           echo "<div class='bid_button' onclick=\"print_bid('".$row['id']."')\">Bid</div>"; 
         } 
 

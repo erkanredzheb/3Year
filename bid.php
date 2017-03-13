@@ -1,3 +1,12 @@
+<html>
+
+<form action="bid.php" method="post">
+<input type="text" name="thebid" value=""><br>
+<input type="submit" value="Place your bid" name="placebid" />
+
+
+</html>
+
 <?php
 //error_reporting(0);
 session_start();
@@ -80,11 +89,3 @@ if(isset($_POST['placebid']))
 ?>
 
 
-<html>
-
-<form action="bid.php" method="post">
-<input type="text" name="thebid" value=""><br>
-<input type="submit" value="Place your bid" name="placebid" />
-
-
-</html>
