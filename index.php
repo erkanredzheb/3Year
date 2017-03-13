@@ -2,11 +2,13 @@
 session_start();
 if(isset($_SESSION["user"]))
 {
+    echo "<div class = \"header\">";
     echo "Hi, " . $_SESSION["user"] . "<br>";
     echo "<a href=\"logout.php\">Log out</a>";
     echo " <a href=\"upload.php\">Sell</a>";
     echo " <a href=\"myitems.php\">My Items</a>";
     echo " <a href=\"purchase_history.php\">Purchases</a>";
+    echo "</div>";
     echo "<br>";
 }
 else
@@ -81,6 +83,10 @@ $stmt->execute();
 $result = $stmt->get_result();
 $num_rows = mysqli_num_rows($result);
 $motorsN = $num_rows;
+
+echo "<div class = \"search\">";
+include 'search.php';
+echo "</div>";
 
 echo "<div class = \"wrapper\">";
 echo "<ul>";

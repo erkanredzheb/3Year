@@ -2,7 +2,7 @@
 
 <form action="search.php" method="post">
 
-Search: <input type="text" name="search"><br>
+<input type="text" name="search">
 
 <input type="submit" value="Go!" name="searchButton" />
 
