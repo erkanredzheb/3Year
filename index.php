@@ -105,10 +105,13 @@ echo "<br>";
 echo "<br>";
 echo "<br>";
 
-echo "<div class = \"mptext\">";
-    echo "Most popular products" . "<br>";
-echo "</div>";
 
+
+
+echo "<div class = \"mptext\">";
+    echo "Most popular" . "<br>";
+echo "</div>";
+echo "<hr>";
 
 echo "<div class = \"mostpopular\">";
 echo "<ul>";
@@ -207,6 +210,9 @@ echo "</li>";
 echo "</ul>";   
 echo "</div>";
 
+
     $stmt->close();
     $conn->close();
+
+
 ?>

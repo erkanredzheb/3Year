@@ -5,6 +5,16 @@
 body{
 	background: powderblue;
 }
+
+hr{
+	display: block;
+    height: 1px;
+    border: 0;
+    border-top: 1px solid #000;
+    margin: 1em 0;
+    padding: 0;
+}
+
 .wrapper ul{
 	margin: 0;
 	margin-left: 250px;
@@ -20,6 +30,7 @@ body{
 	list-style: none;
     text-align: center;
     display: block;
+
        
  }
 
@@ -34,7 +45,7 @@ body{
     display: block;
     border: 1px solid #000;
     text-align: center;
-    
+    text-decoration: none;
 
 }
 
@@ -52,6 +63,8 @@ body{
 
 .mptext{
 	margin-left: 500px;
+	font-style: italic;
+	font-size: 250%;
 }
 
 .mostpopular{
@@ -89,7 +102,9 @@ body{
 
 .raddedtext{
 	margin-left: 1150px;
-	margin-top: -970px;
+	margin-top: -1030px;
+	font-style: italic;
+	font-size: 250%;
 }
 
 
