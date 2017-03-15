@@ -54,11 +54,13 @@ function displayimg()
 
           echo "<div class='buy_button' onclick=\"print_id('".$row['id']."')\">Buy</div>";
         }
-        else if(strcmp($auctionType, "English Auction") == 0) 
+        else 
         {
-          echo "The current highest bid is: " . $row2['amount'] . "<br>";
           echo "<div class='bid_button' onclick=\"print_bid('".$row['id']."')\">Bid</div>"; 
         } 
+
+        if(strcmp($auctionType, "English Auction") == 0)
+            { echo "The current highest bid is: " . $row2['amount'] . "<br>"; }
 
         echo "<br>";
         echo "<br>";
