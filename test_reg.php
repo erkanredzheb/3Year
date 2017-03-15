@@ -42,4 +42,9 @@ $stmt = $conn->prepare("DELETE FROM user_info WHERE username = ?");
 $stmt->bind_param("s", $testreg);
 $stmt->execute(); 
 
+
+$stmt->close();
+$conn->close();
+
+
 ?>
