@@ -36,6 +36,7 @@ mysqli_select_db($conn, $dbname);
 
 
 $blind = "Blind Auction";
+$vickery = "Vickery Auction";
 
 $stmt = $conn->prepare("SELECT auction_type FROM product_info WHERE id = ?");
 $stmt->bind_param("i", $_COOKIE[$cookie_name]);
@@ -47,7 +48,7 @@ while($row2 = mysqli_fetch_array($result2,MYSQLI_ASSOC))
 } 
 
 
-if(strcmp($auctionType, $blind) == 0)
+if(strcmp($auctionType, $blind) == 0 || strcmp($auctionType, $vickery) == 0)
 {
   
   $stmt = $conn->prepare("SELECT product_id, bidder_id FROM bidding_info WHERE product_id = ?");
@@ -62,7 +63,7 @@ if(strcmp($auctionType, $blind) == 0)
     {
       if(strcmp($row3['bidder_id'], $_SESSION['user']) == 0)
       {
-        echo "This is a Blind auction and you can place only one bid per product!";
+        echo "Because of the auction type of this product you can only bid once! Check Vickery/Blind auction's rules.";
         exit(0);
       }  
     }
