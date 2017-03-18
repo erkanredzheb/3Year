@@ -6,6 +6,19 @@ if(!isset($_SESSION["user"]))
 	header("Location: login.php");
 }
 
+
+if(isset($_SESSION["user"]))
+{
+    echo "<div class = \"header\">";
+    echo "Hi, " . $_SESSION["user"] . "<br>";
+    echo "<a href=\"logout.php\">Log out</a>";
+    echo " <a href=\"upload.php\">Sell</a>";
+    echo " <a href=\"purchase_history.php\">Purchases</a>";
+    echo " <a href=\"index.php\">Home</a>";
+    echo "</div>";
+    echo "<br>";
+}   
+
 require("connectDB.php");
 
 $dbname = "3year";

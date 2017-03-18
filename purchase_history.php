@@ -9,6 +9,17 @@ if(!isset($_SESSION["user"]))
 
 $currUser = $_SESSION["user"];
 
+if(isset($_SESSION["user"]))
+{
+    echo "<div class = \"header\">";
+    echo "Hi, " . $_SESSION["user"] . "<br>";
+    echo "<a href=\"logout.php\">Log out</a>";
+    echo " <a href=\"upload.php\">Sell</a>";
+    echo " <a href=\"myitems.php\">My Items</a>";
+    echo " <a href=\"index.php\">Home</a>";
+    echo "</div>";
+    echo "<br>";
+}   
 
 require("connectDB.php");
 
@@ -43,7 +54,7 @@ if($count > 0)
             
 
 
-        echo "<div class='product_view_button' onclick=\"product_view('".$row['id']."')\">View</div>";
+        
 
         echo "<br>";
         echo "<br>";
