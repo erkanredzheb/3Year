@@ -39,6 +39,8 @@ while($row = mysqli_fetch_array($result,MYSQLI_ASSOC))
     	echo $row['description'] . "<br>";
     	echo $row['price'] . "<br>";
     	echo '<img height="300" width="300" src="data:image;base64, '.$row['img'].' ">' . "<br>";
+        echo $row['auction_type'] . "<br>";
+        echo "By " . $row['user_id'] . "<br>";
         
 
         echo "<html>";
@@ -66,6 +68,8 @@ while($row = mysqli_fetch_array($result,MYSQLI_ASSOC))
         echo $row['description'] . "<br>";
         echo $row['price'] . "<br>";
         echo '<img height="300" width="300" src="data:image;base64, '.$row['img'].' ">' . "<br>";
+        echo $row['auction_type'] . "<br>";
+        echo "By " . $row['user_id'] . "<br>";
         
 
         echo "<html>";
