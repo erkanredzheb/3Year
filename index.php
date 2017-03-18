@@ -86,7 +86,16 @@ $num_rows = mysqli_num_rows($result);
 $motorsN = $num_rows;
 
 echo "<div class = \"search\">";
-include 'search.php';
+echo "<html>";
+
+echo "<form action=\"search.php\" method=\"post\">";
+
+echo "<input type=\"text\" name=\"search\">";
+
+echo "<input type=\"submit\" value=\"Go!\" name=\"searchButton\" />";
+
+
+echo "</html>";
 echo "</div>";
 
 echo "<div class = \"wrapper\">";
