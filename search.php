@@ -11,6 +11,8 @@
 
 <?php
 echo "<br>";
+
+
 if(isset($_POST['searchButton']))
 {
 	$search = "%{$_POST['search']}%";

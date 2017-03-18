@@ -72,7 +72,7 @@ function verifyReg($username, $password, $password2, $mails)
 
     
             echo "New record created successfully" . "<br>";
-    
+            header("Location: http://localhost/3Year/index.php");
 
             $stmt->close();
             $conn->close();

@@ -13,7 +13,8 @@ if(isset($_SESSION["user"]))
 }
 else
 {
-    echo "<a href=\"login.php\">Sign in</a>";
+    echo " <a href=\"login.php\">Sign in</a>";
+    echo " <a href=\"register.php\">Register</a>";
     echo "<br>";
 }    
 
@@ -116,7 +117,7 @@ echo "<hr>";
 echo "<div class = \"mostpopular\">";
 echo "<ul>";
 echo "<li>";
-$stmt = $conn->prepare("SELECT * FROM product_info ORDER BY viewCounter DESC LIMIT 6");
+$stmt = $conn->prepare("SELECT * FROM product_info ORDER BY viewCounter DESC LIMIT 50");
 $stmt->execute();
 $result = $stmt->get_result();
     while($row = mysqli_fetch_array($result,MYSQLI_ASSOC))
@@ -167,7 +168,7 @@ echo "<li>";
 
   
 
-	$stmt = $conn->prepare("SELECT * FROM product_info ORDER BY date DESC LIMIT 6");
+	$stmt = $conn->prepare("SELECT * FROM product_info ORDER BY date DESC LIMIT 50");
 
 
     $stmt->execute();
