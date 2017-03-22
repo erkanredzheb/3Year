@@ -126,6 +126,11 @@ echo "<hr>";
 echo "<div class = \"mostpopular\">";
 echo "<ul>";
 echo "<li>";
+
+$vickery = "Vickery Auction";
+$blind = "Blind Auction";
+
+
 $stmt = $conn->prepare("SELECT * FROM product_info ORDER BY viewCounter DESC LIMIT 50");
 $stmt->execute();
 $result = $stmt->get_result();
@@ -133,10 +138,13 @@ $result = $stmt->get_result();
     {	
         if($row["boughtby"] == NULL)
         {    
+           $auctionType = $row['auction_type']; 
     	   echo $row['title'] . "<br>";
     	   echo $row['category'] . "<br>";
     	   echo $row['description'] . "<br>";
-    	   echo $row['price'] . "<br>";
+           if(strcmp($auctionType, $blind)  !== 0 && strcmp($auctionType, $vickery) !==0)
+
+           { echo $row['price'] . "<br>"; }
     	   echo '<img height="300" width="300" src="data:image;base64, '.$row['img'].' ">' . "<br>";
            echo $row['auction_type'] . "<br>";
            echo "By " . $row['user_id'] . "<br>";
@@ -185,11 +193,15 @@ echo "<li>";
     while($row = mysqli_fetch_array($result,MYSQLI_ASSOC))
     {	
         if($row['boughtby'] == NULL)
-        {    
+        {
+           $auctionType = $row['auction_type'];    
     	   echo $row['title'] . "<br>";
     	   echo $row['category'] . "<br>";
     	   echo $row['description'] . "<br>";
-    	   echo $row['price'] . "<br>";
+    	   if(strcmp($auctionType, $blind)  !== 0 && strcmp($auctionType, $vickery) !==0)
+
+           { echo $row['price'] . "<br>"; }
+       
     	   echo '<img height="300" width="300" src="data:image;base64, '.$row['img'].' ">' . "<br>";
            echo $row['auction_type'] . "<br>";
            echo "By " . $row['user_id'] . "<br>";

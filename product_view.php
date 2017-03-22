@@ -20,9 +20,14 @@ else
     echo "</div>";
     echo "<br>";
 } 
+
+
 displayimg();
 function displayimg()
 {
+    $vickery = "Vickery Auction";
+    $blind = "Blind Auction";
+
 	require("connectDB.php");
 
     $dbname = "3year";
@@ -36,15 +41,19 @@ function displayimg()
     $result = $stmt->get_result();
     $row = mysqli_fetch_array($result,MYSQLI_ASSOC);
     	
+        $auctionType = $row['auction_type'];
     	echo $row['title'] . "<br>";
     	echo $row['category'] . "<br>";
     	echo $row['description'] . "<br>";
-    	echo $row['price'] . "<br>";
+        if(strcmp($auctionType, $blind)  !== 0 && strcmp($auctionType, $vickery) !==0)
+
+    	 { echo $row['price'] . "<br>"; }
+
     	echo '<img height="300" width="300" src="data:image;base64, '.$row['img'].' ">' . "<br>";
         echo $row['auction_type'] . "<br>";
         echo "By " . $row['user_id'] . "<br>";
 
-        $auctionType = $row['auction_type'];
+        
 
         // Increment number of views for the product.
         $counter = $row['viewCounter'];
