@@ -16,7 +16,7 @@ function verifyLogin($usernameLogin, $passwordLogin)
     $dbname = "3year";
     mysqli_select_db($conn, $dbname);
 
-    //$sql = "SELECT username, password FROM user_info WHERE username = '$usernameLogin'";
+ 
     $stmt = $conn->prepare("SELECT username, password FROM user_info WHERE username = ?");
     $stmt->bind_param("s", $usernameLogin);
     $stmt->execute();
@@ -50,15 +50,38 @@ function verifyLogin($usernameLogin, $passwordLogin)
 }
 ?>
 
-<html>
 
-<form action="login.php" method="post">
+<html >
+<head>
+  <meta charset="UTF-8">
+  <title>Log-in</title>
+  
+  
+  <link rel='stylesheet prefetch' href='http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/themes/smoothness/jquery-ui.css'>
 
-Username: <input type="text" name="usernameLogin" value=""><br>
+      <link rel="stylesheet" href="css/style.css">
 
-Password: <input type="password" name="passwordLogin" value=""><br>
+  
+</head>
 
-<input type="submit" value="Submit" name="submitLogin" />
+<body>
+  <div class="login-card">
+    <h1>Log-in</h1><br>
+  <form action="login.php" method="post">
+    <input type="text" name="usernameLogin" placeholder="Username">
+    <input type="password" name="passwordLogin" placeholder="Password">
+    <input type="submit" name="submitLogin" class="login login-submit" value="login">
+  </form>
+    
+  <div class="login-help">
+    <a href="register.php">Register</a>
+  </div>
+</div>
 
+<!-- <div id="error"><img src="https://dl.dropboxusercontent.com/u/23299152/Delete-icon.png" /> Your caps-lock is on.</div> -->
+  <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+<script src='http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js'></script>
 
+  
+</body>
 </html>

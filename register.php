@@ -72,7 +72,7 @@ function verifyReg($username, $password, $password2, $mails)
 
     
             echo "New record created successfully" . "<br>";
-            header("Location: http://localhost/3Year/index.php");
+            header("Location: http://localhost/3Year/login.php");
 
             $stmt->close();
             $conn->close();
@@ -100,20 +100,36 @@ function IsSafe($string)
 
 ?>
 
-<html>
+<html >
+<head>
+  <meta charset="UTF-8">
+  <title>Register</title>
+  
+  
+  <link rel='stylesheet prefetch' href='http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/themes/smoothness/jquery-ui.css'>
 
-<form action="register.php" method="post">
+      <link rel="stylesheet" href="css/style.css">
 
-Username: <input type="text" name="username" value=""><br>
+  
+</head>
 
-E-mail: <input type="text" name="email" value=""><br>
+<body>
+  <div class="login-card">
+    <h1>Register</h1><br>
+  <form action="register.php" method="post">
+    <input type="text" name="username" placeholder="Username">
+    <input type="text" name="email" placeholder="E-mail">
+    <input type="password" name="password" placeholder="Password">
+    <input type="password" name="password2" placeholder="Re-enter password">
+    <input type="submit" name="submit" class="login login-submit" value="Register">
+  </form>
+    
+</div>
 
-Password: <input type="password" name="password" value=""><br>
+<!-- <div id="error"><img src="https://dl.dropboxusercontent.com/u/23299152/Delete-icon.png" /> Your caps-lock is on.</div> -->
+  <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+<script src='http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js'></script>
 
-Re-enter password:  <input type="password" name="password2" value=""><br>
-
-<input type="submit" value="Submit" name="submit" />
-
-
-
+  
+</body>
 </html>
