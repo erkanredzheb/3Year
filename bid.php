@@ -6,7 +6,7 @@
   
   <link rel='stylesheet prefetch' href='http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/themes/smoothness/jquery-ui.css'>
 
-      <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/style.css">
 
   
 </head>
@@ -33,6 +33,8 @@
 <?php
 error_reporting(0);
 session_start();
+
+
 
 $cookie_name = "a";
 
@@ -122,13 +124,14 @@ if(strcmp($auctionType, $blind) == 0 || strcmp($auctionType, $vickery) == 0)
       while($row = mysqli_fetch_array($result,MYSQLI_ASSOC))
 	  {	
     	  $theprice = $row['price'];
+
 	  }  
     }
 
 
-    if($theprice < $thebid)
+    if(($theprice < $thebid) || strcmp($auctionType, $blind)  == 0 || strcmp($auctionType, $vickery) == 0 )
     {	
-	  $stmt = $conn->prepare("INSERT INTO bidding_info (product_id, bidder_id, amount) VALUES (?, ?, ?)");
+	    $stmt = $conn->prepare("INSERT INTO bidding_info (product_id, bidder_id, amount) VALUES (?, ?, ?)");
       $stmt->bind_param("isi", $_COOKIE[$cookie_name], $_SESSION['user'], $thebid);
       $stmt->execute();
 
