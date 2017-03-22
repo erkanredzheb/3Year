@@ -5,8 +5,19 @@ if(!isset($_SESSION["user"]))
 {
 	header("Location: login.php");
 }
+else
+{
+	echo "<div class = \"header\">";
+    echo "Hi, " . $_SESSION["user"] . "<br>";
+    echo "<a href=\"logout.php\">Log out</a>";
+    echo " <a href=\"myitems.php\">My Items</a>";
+    echo " <a href=\"purchase_history.php\">Purchases</a>";
+    echo " <a href=\"index.php\">Home</a>";
+    echo "</div>";
+    echo "<br>";
+}
 
- echo "Hi, " . $_SESSION["user"] . "<br>";
+
 
 if(isset($_POST['submitimg']))
 {
@@ -54,12 +65,26 @@ function saveimg($title, $category, $descr, $price, $image, $auction)
 
 ?>
 
-<html>
-	<body>
-		<form method="post" enctype="multipart/form-data">
-			Name: <input type="text" name="title" value=""><br>
-			Categories: 
-			<select name="state">
+
+<html >
+<head>
+  <meta charset="UTF-8">
+  <title>Log-in</title>
+  
+  
+  <link rel='stylesheet prefetch' href='http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/themes/smoothness/jquery-ui.css'>
+
+      <link rel="stylesheet" href="css/style.css">
+
+  
+</head>
+
+<body>
+  <div class="login-card">
+    <h1>Upload</h1><br>
+  <form method="post" enctype="multipart/form-data">
+    <input type="text" name="title" value="" placeholder="Title">
+    <select name="state" placeholder="Category">
   				<option value="Fashion">Fashion</option>
   				<option value="Home & Garden">Home & Garden</option>
   				<option value="Electronics">Electronics</option>
@@ -67,22 +92,25 @@ function saveimg($title, $category, $descr, $price, $image, $auction)
   				<option value="Collectables">Collectables</option>
   				<option value="Health & Beauty">Health & Beauty</option>
   				<option value="Motors">Motors</option>
-			</select>
-			<br/>
-			
-			Description: <input type="text" name="descr" value=""><br>
-			Price: <input type="text" name="price" value=""><br>
-			Auction type:
-			<select name="auction">
+	</select>
+     <input type="text" name="descr" value="" placeholder="Description">
+     <input type="text" name="price" value="" placeholder="Price">
+     <select name="auction" placeholder="Selling method">
   				<option value="Buy Now">Buy Now</option>
   				<option value="English Auction">English Auction</option>
   				<option value="Blind Auction">Blind Auction</option>
   				<option value="Vickery Auction">Vickery Auction</option>
 			</select>
-			<br/>
-			<input type="file" name="image">
-			<br/><br/>
-			<input type="submit" name="submitimg" value="Upload" />
-		</form>
-	</body>
+	<input type="file" name="image">		
+    <input type="submit" name="submitimg" class="login login-submit" value="Upload">
+  </form>
+    
+</div>
+
+<!-- <div id="error"><img src="https://dl.dropboxusercontent.com/u/23299152/Delete-icon.png" /> Your caps-lock is on.</div> -->
+  <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+<script src='http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js'></script>
+
+  
+</body>
 </html>
