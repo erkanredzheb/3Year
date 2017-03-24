@@ -20,15 +20,32 @@ if(isset($_SESSION["user"]))
     echo "<br>";
 }   
 
+
+
 require("connectDB.php");
 
 $dbname = "3year";
 mysqli_select_db($conn, $dbname);
 
- $stmt = $conn->prepare("SELECT * FROM product_info INNER JOIN user_info ON product_info.user_id= (?) GROUP BY product_info.title, product_info.category, product_info.price, product_info.img");
- $stmt->bind_param("s", $_SESSION["user"]);
- $stmt->execute();
- $result = $stmt->get_result();
+$stmt = $conn->prepare("SELECT * FROM product_info INNER JOIN user_info ON product_info.user_id= (?) GROUP BY product_info.title, product_info.category, product_info.price, product_info.img");
+$stmt->bind_param("s", $_SESSION["user"]);
+$stmt->execute();
+$result = $stmt->get_result();
+$num_rows = mysqli_num_rows($result);
+if($num_rows == 0)
+{
+    echo "<html>";
+    echo "<head>";
+    echo "<link rel='stylesheet' type='text/css' href='./style.css'>";
+    echo "<script src='./scripts.js'></script>";
+    echo "<script src='https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js'></script>";
+    echo "<div class='soldLabel'>";
+        echo "You do not have any items yet!";
+    echo "</div>";    
+    echo "</head>";
+    echo "</html>";
+
+}    
 
 while($row = mysqli_fetch_array($result,MYSQLI_ASSOC))
    {	

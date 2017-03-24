@@ -253,6 +253,34 @@ public class SeleniumTest {
     assertEquals("Please provide a word!", driver.findElement(By.tagName("BODY")).getText());
     
   }
+
+  @Test
+  public void nobids() throws Exception {
+    driver.get(baseUrl + "/3year/");
+    driver.findElement(By.linkText("Sign in")).click();
+    driver.findElement(By.name("usernameLogin")).clear();
+    driver.findElement(By.name("usernameLogin")).sendKeys("nobids");
+    driver.findElement(By.name("passwordLogin")).clear();
+    driver.findElement(By.name("passwordLogin")).sendKeys("nobids");
+    driver.findElement(By.name("submitLogin")).click();
+    driver.findElement(By.linkText("My Bids")).click();
+    assertEquals("You do not have any bids yet!", driver.findElement(By.tagName("BODY")).getText());
+  }
+
+@Test
+public void noitems() throws Exception {
+    driver.get(baseUrl + "/3year/");
+    driver.findElement(By.linkText("Sign in")).click();
+    driver.findElement(By.name("usernameLogin")).clear();
+    driver.findElement(By.name("usernameLogin")).sendKeys("nobids");
+    driver.findElement(By.name("passwordLogin")).clear();
+    driver.findElement(By.name("passwordLogin")).sendKeys("nobids");
+    driver.findElement(By.name("submitLogin")).click();
+    driver.findElement(By.linkText("My Items")).click();
+    assertEquals("You do not have any items yet!", driver.findElement(By.tagName("BODY")).getText());
+  }
+
+
   
   @After
   public void tearDown() throws Exception {
