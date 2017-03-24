@@ -160,3 +160,8 @@ hr{
 	background-color: #858585;
 	text-align: center;
 }
+
+.soldLabel{
+	color: red;
+	font-weight: bold;
+}
