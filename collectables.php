@@ -7,6 +7,7 @@ if(isset($_SESSION["user"]))
     echo "<a href=\"logout.php\">Log out</a>";
     echo " <a href=\"upload.php\">Sell</a>";
     echo " <a href=\"myitems.php\">My Items</a>";
+    echo " <a href=\"mybids.php\">My Bids</a>";
     echo " <a href=\"purchase_history.php\">Purchases</a>";
     echo " <a href=\"index.php\">Home</a>";
     echo "</div>";
