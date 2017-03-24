@@ -85,6 +85,11 @@ $result = $stmt->get_result();
 $num_rows = mysqli_num_rows($result);
 $motorsN = $num_rows;
 
+echo "<div class = \"buy_type\">";
+echo "<a href=\"buynow.php\">Buy Now</a>";
+echo "  <a href=\"auctions.php\">Auctions</a>";
+echo "</div>";
+
 echo "<div class = \"search\">";
 echo "<html>";
 

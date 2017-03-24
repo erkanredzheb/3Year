@@ -55,7 +55,7 @@ hr{
 
 .search{
 	margin-left: 800px;
-	margin-top: 50px;
+	margin-top: 10px;
 }
 
 .mptext{
@@ -164,4 +164,10 @@ hr{
 .soldLabel{
 	color: red;
 	font-weight: bold;
+}
+
+.buy_type{
+	margin-left: 820px;
+	margin-top: 25px;
+
 }
